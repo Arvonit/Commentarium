@@ -1,6 +1,6 @@
 //
 //  CommentariumApp.swift
-//  Shared
+//  Commentarium
 //
 //  Created by Arvind on 6/7/21.
 //

@@ -7,7 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A41C653226700D6D00E81817 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653126700D6D00E81817 /* Folder.swift */; };
+		A41C653326700D6D00E81817 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653126700D6D00E81817 /* Folder.swift */; };
+		A41C653526700FCC00E81817 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653426700FCC00E81817 /* NoteCell.swift */; };
+		A41C653626700FCC00E81817 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653426700FCC00E81817 /* NoteCell.swift */; };
+		A41C653826700FF700E81817 /* NoteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653726700FF700E81817 /* NoteList.swift */; };
+		A41C653926700FF700E81817 /* NoteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653726700FF700E81817 /* NoteList.swift */; };
+		A41C653B2670105C00E81817 /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653A2670105C00E81817 /* FolderList.swift */; };
+		A41C653C2670105C00E81817 /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653A2670105C00E81817 /* FolderList.swift */; };
+		A41C653E2670106500E81817 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653D2670106500E81817 /* FolderCell.swift */; };
+		A41C653F2670106500E81817 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C653D2670106500E81817 /* FolderCell.swift */; };
 		A446A7BE266EC97A003C75C8 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A446A7BD266EC97A003C75C8 /* Note.swift */; };
+		A458982726702C0F0096A558 /* AddFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458982626702C0F0096A558 /* AddFolder.swift */; };
+		A458982826702C0F0096A558 /* AddFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458982626702C0F0096A558 /* AddFolder.swift */; };
+		A458982A26702ED10096A558 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458982926702ED10096A558 /* DataController.swift */; };
+		A458982B26702ED10096A558 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458982926702ED10096A558 /* DataController.swift */; };
+		A458982E26702F840096A558 /* NSManagedObjectContext+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458982D26702F840096A558 /* NSManagedObjectContext+Helpers.swift */; };
+		A458982F26702F840096A558 /* NSManagedObjectContext+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458982D26702F840096A558 /* NSManagedObjectContext+Helpers.swift */; };
 		A4CAD4CA266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4CAD4C8266FFFB80039E817 /* Commentarium.xcdatamodeld */; };
 		A4CAD4CB266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4CAD4C8266FFFB80039E817 /* Commentarium.xcdatamodeld */; };
 		A4D3E74C266EBBA100BB24D7 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3E74B266EBBA100BB24D7 /* Tests_iOS.swift */; };
@@ -38,7 +54,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A41C653126700D6D00E81817 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		A41C653426700FCC00E81817 /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		A41C653726700FF700E81817 /* NoteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteList.swift; sourceTree = "<group>"; };
+		A41C653A2670105C00E81817 /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
+		A41C653D2670106500E81817 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		A446A7BD266EC97A003C75C8 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		A458982626702C0F0096A558 /* AddFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolder.swift; sourceTree = "<group>"; };
+		A458982926702ED10096A558 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		A458982D26702F840096A558 /* NSManagedObjectContext+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Helpers.swift"; sourceTree = "<group>"; };
 		A4CAD4C9266FFFB80039E817 /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
 		A4D3E735266EBB9E00BB24D7 /* CommentariumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentariumApp.swift; sourceTree = "<group>"; };
 		A4D3E736266EBB9E00BB24D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,12 +107,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A41C6540267010D800E81817 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3E736266EBB9E00BB24D7 /* ContentView.swift */,
+				A41C653D2670106500E81817 /* FolderCell.swift */,
+				A41C653A2670105C00E81817 /* FolderList.swift */,
+				A458982626702C0F0096A558 /* AddFolder.swift */,
+				A41C653426700FCC00E81817 /* NoteCell.swift */,
+				A41C653726700FF700E81817 /* NoteList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A446A7BC266EC96E003C75C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A446A7BD266EC97A003C75C8 /* Note.swift */,
+				A41C653126700D6D00E81817 /* Folder.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A458982C26702F710096A558 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A458982D26702F840096A558 /* NSManagedObjectContext+Helpers.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A4D3E72F266EBB9E00BB24D7 = {
@@ -104,11 +150,13 @@
 		A4D3E734266EBB9E00BB24D7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A446A7BC266EC96E003C75C8 /* Models */,
 				A4D3E737266EBBA100BB24D7 /* Assets.xcassets */,
-				A4D3E735266EBB9E00BB24D7 /* CommentariumApp.swift */,
-				A4D3E736266EBB9E00BB24D7 /* ContentView.swift */,
+				A458982C26702F710096A558 /* Extensions */,
+				A446A7BC266EC96E003C75C8 /* Models */,
+				A41C6540267010D800E81817 /* Views */,
 				A4CAD4C8266FFFB80039E817 /* Commentarium.xcdatamodeld */,
+				A4D3E735266EBB9E00BB24D7 /* CommentariumApp.swift */,
+				A458982926702ED10096A558 /* DataController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -299,7 +347,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D3E759266EBBA100BB24D7 /* ContentView.swift in Sources */,
+				A41C653226700D6D00E81817 /* Folder.swift in Sources */,
+				A41C653E2670106500E81817 /* FolderCell.swift in Sources */,
+				A458982E26702F840096A558 /* NSManagedObjectContext+Helpers.swift in Sources */,
 				A4D3E757266EBBA100BB24D7 /* CommentariumApp.swift in Sources */,
+				A41C653B2670105C00E81817 /* FolderList.swift in Sources */,
+				A458982A26702ED10096A558 /* DataController.swift in Sources */,
+				A41C653526700FCC00E81817 /* NoteCell.swift in Sources */,
+				A41C653826700FF700E81817 /* NoteList.swift in Sources */,
+				A458982726702C0F0096A558 /* AddFolder.swift in Sources */,
 				A4CAD4CA266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */,
 				A446A7BE266EC97A003C75C8 /* Note.swift in Sources */,
 			);
@@ -311,7 +367,15 @@
 			files = (
 				A4CAD4CB266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */,
 				A4D3E75A266EBBA100BB24D7 /* ContentView.swift in Sources */,
+				A41C653626700FCC00E81817 /* NoteCell.swift in Sources */,
+				A458982826702C0F0096A558 /* AddFolder.swift in Sources */,
+				A458982F26702F840096A558 /* NSManagedObjectContext+Helpers.swift in Sources */,
 				A4D3E758266EBBA100BB24D7 /* CommentariumApp.swift in Sources */,
+				A458982B26702ED10096A558 /* DataController.swift in Sources */,
+				A41C653C2670105C00E81817 /* FolderList.swift in Sources */,
+				A41C653326700D6D00E81817 /* Folder.swift in Sources */,
+				A41C653926700FF700E81817 /* NoteList.swift in Sources */,
+				A41C653F2670106500E81817 /* FolderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
