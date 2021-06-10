@@ -1,22 +1,20 @@
 //
-//  NoteList.swift
+//  AllNotes.swift
 //  Commentarium
 //
-//  Created by Arvind on 6/8/21.
+//  Created by Arvind on 6/9/21.
 //
 
 import SwiftUI
 
-struct NoteList: View {
+struct AllNotes: View {
     @EnvironmentObject private var dataController: DataController
     @FetchRequest private var notes: FetchedResults<Note>
-    let folder: Folder
     
-    init(folder: Folder) {
-        self.folder = folder
+    init() {
         self._notes = FetchRequest<Note>(
             sortDescriptors: [SortDescriptor<Note>(\.dateUpdated, order: .reverse)],
-            predicate: NSPredicate(format: "folder == %@ AND isInTrash == NO", folder),
+            predicate: NSPredicate(format: "isInTrash == NO"),
             animation: .default
         )
     }
@@ -24,7 +22,7 @@ struct NoteList: View {
     var body: some View {
         List {
             ForEach(notes) { note in
-                NoteCell(note: note, folder: folder)
+                NoteCell(note: note)
                     .swipeActions(edge: .trailing) {
                         Button(role: .destructive) {
                             note.isInTrash = true
@@ -42,11 +40,11 @@ struct NoteList: View {
                 dataController.save()
             }
         }
-        .navigationTitle(folder.safeName)
+        .navigationTitle("All Notes")
         .listStyle(.insetGrouped)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: NoteEditor(folder: folder)) {
+                NavigationLink(destination: NoteEditor()) {
                     Button {
                         
                     } label: {
@@ -58,7 +56,7 @@ struct NoteList: View {
     }
 }
 
-struct NoteListPreviews: PreviewProvider {
+struct AllNotes_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }

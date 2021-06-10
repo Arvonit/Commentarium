@@ -17,19 +17,28 @@ struct FolderList: View {
     
     var body: some View {
         List(selection: $selectedFolders) {
-            ForEach(folders) { folder in
-                NavigationLink(destination: NoteList()) {
-                    Label(folder.safeName, systemImage: folder.safeIcon)
-                }
+            NavigationLink(destination: AllNotes()) {
+                Label("All", systemImage: "tray.full")
             }
-            .onDelete { indices in
-                for index in indices {
-                    dataController.delete(folders[index])
+            NavigationLink(destination: DeletedNotes()) {
+                Label("Trash", systemImage: "trash")
+            }
+            Section(header: Text("Folders")) {
+                ForEach(folders) { folder in
+                    NavigationLink(destination: NoteList(folder: folder)) {
+                        Label(folder.safeName, systemImage: folder.safeIcon)
+                    }
                 }
-                dataController.save()
+                .onDelete { indices in
+                    for index in indices {
+                        dataController.delete(folders[index])
+                    }
+                    dataController.save()
+                }
             }
         }
-        .navigationTitle("Folders")
+        .listStyle(.sidebar)
+        .navigationTitle("Commentarium")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {

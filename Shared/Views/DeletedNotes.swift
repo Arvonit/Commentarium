@@ -1,22 +1,20 @@
 //
-//  NoteList.swift
+//  DeletedNotes.swift
 //  Commentarium
 //
-//  Created by Arvind on 6/8/21.
+//  Created by Arvind on 6/9/21.
 //
 
 import SwiftUI
 
-struct NoteList: View {
+struct DeletedNotes: View {
     @EnvironmentObject private var dataController: DataController
     @FetchRequest private var notes: FetchedResults<Note>
-    let folder: Folder
     
-    init(folder: Folder) {
-        self.folder = folder
+    init() {
         self._notes = FetchRequest<Note>(
             sortDescriptors: [SortDescriptor<Note>(\.dateUpdated, order: .reverse)],
-            predicate: NSPredicate(format: "folder == %@ AND isInTrash == NO", folder),
+            predicate: NSPredicate(format: "isInTrash == YES"),
             animation: .default
         )
     }
@@ -24,10 +22,18 @@ struct NoteList: View {
     var body: some View {
         List {
             ForEach(notes) { note in
-                NoteCell(note: note, folder: folder)
+                NoteCell(note: note)
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            note.isInTrash = false
+                        } label: {
+                            Image(systemName: "tray.fill")
+                        }
+                        .tint(.blue)
+                    }
                     .swipeActions(edge: .trailing) {
                         Button(role: .destructive) {
-                            note.isInTrash = true
+                            dataController.delete(note)
                             dataController.save()
                         } label: {
                             Image(systemName: "trash.fill")
@@ -37,28 +43,17 @@ struct NoteList: View {
             }
             .onDelete { indices in
                 for index in indices {
-                    notes[index].isInTrash = true
+                    dataController.delete(notes[index])
                 }
                 dataController.save()
             }
         }
-        .navigationTitle(folder.safeName)
+        .navigationTitle("Trash")
         .listStyle(.insetGrouped)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: NoteEditor(folder: folder)) {
-                    Button {
-                        
-                    } label: {
-                        Label("Add", systemImage: "plus")
-                    }
-                }
-            }
-        }
     }
 }
 
-struct NoteListPreviews: PreviewProvider {
+struct DeletedNotes_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
