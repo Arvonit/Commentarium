@@ -10,7 +10,6 @@ import SwiftUI
 import CoreData
 
 class DataController: ObservableObject {
-    
     private let container: NSPersistentContainer
     
     init(inMemory: Bool = false) {
@@ -61,26 +60,33 @@ class DataController: ObservableObject {
         context.delete(object)
     }
     
-    func deleteAll() {
+    func deleteAllEntities() {
+        deleteAllNotes()
+        deleteAllFolders()
+    }
+    
+    func deleteAllNotes() {
         // Fetch and delete all notes
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Note")
-        var batchRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
+        let batchRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.executeAndMergeChanges(using: batchRequest)
         } catch {
             fatalError("Fatal error while deleting all notes: \(error.localizedDescription)")
         }
-        
-        // Fetch and delete all tags
-        fetchRequest = NSFetchRequest(entityName: "Folder")
-        batchRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+    }
+    
+    func deleteAllFolders() {
+        // Fetch and delete all folders
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folder")
+        let batchRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.executeAndMergeChanges(using: batchRequest)
         } catch {
             fatalError("Fatal error while deleting all folders: \(error.localizedDescription)")
         }
     }
-    
+        
     func createSampleData() {
         // Sample notes
         let notes: [String] = [
@@ -108,7 +114,7 @@ class DataController: ObservableObject {
         
         // Sample folders
         let folders: [Folder] = [
-            Folder(name: "Commentarium", context: context),
+            Folder(name: "Blog", context: context),
             Folder(name: "Ideas", context: context),
             Folder(name: "Journal", context: context)
         ]
@@ -125,6 +131,5 @@ class DataController: ObservableObject {
             fatalError("Fatal error while creating sample data: \(error.localizedDescription)")
         }
     }
-    
 }
 

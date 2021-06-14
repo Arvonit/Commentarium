@@ -47,4 +47,17 @@ extension Note {
         set { id = newValue }
     }
     
+    var title: String {
+        return safeContent != ""
+                ? String(safeContent.split(whereSeparator: \.isNewline)[0])
+                : "New note"
+    }
+    
+    var contentWithoutTitle: String {
+        let splitContent = safeContent.split(whereSeparator: \.isNewline)
+        return safeContent != ""
+                ? splitContent[1..<splitContent.count].joined(separator: "\n")
+                : "Add some text"
+    }
+    
 }

@@ -12,9 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            FolderList()
-            Text("Select a folder...")
-            Text("Select a note...")
+            FoldersView()
+//            Text("Select a folder...")
+//            Text("Select a note...")
         }
         .environment(\.managedObjectContext, dataController.context)
         .environmentObject(dataController)
