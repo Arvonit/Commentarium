@@ -18,8 +18,8 @@ struct NotesView: View {
         self.navigationTitle = folder?.safeName ?? "All Notes"
         
         let predicate: NSPredicate
-        if let folder = folder {
-            predicate = NSPredicate(format: "folder == %@ AND isInTrash == NO", folder)
+        if let safeFolder = folder {
+            predicate = NSPredicate(format: "folder == %@ AND isInTrash == NO", safeFolder)
         } else {
             predicate = NSPredicate(format: "isInTrash == NO")
         }
@@ -33,23 +33,52 @@ struct NotesView: View {
 
     var body: some View {
         List {
-            ForEach(notes) { note in
-                NoteCellView(note: note)
-                    .swipeActions(edge: .trailing) {
-                        deleteSwipeAction(note: note)
-                    }
-                    .contextMenu {
-                        NavigationLink(destination: Text("foo")) {
-                            Label("Edit", systemImage: "pencil")
-                        }
-                        deleteMenuItem(note: note)
-                    }
+            if pinnedNotes.count > 0 && unpinnedNotes.count > 0 {
+                Section("Pinned") {
+                    notesList(notes: pinnedNotes)
+                }
+                
+                Section("Notes") {
+                    notesList(notes: unpinnedNotes)
+                }
+            } else if pinnedNotes.count > 0 && unpinnedNotes.count == 0 {
+                Section("Pinned") {
+                    notesList(notes: pinnedNotes)
+                }
+            } else {
+                notesList(notes: unpinnedNotes)
             }
-            .onDelete { delete(at: $0) }
         }
         .navigationTitle(navigationTitle)
-        .listStyle(.insetGrouped)
+        .listStyle(.sidebar)
         .toolbar { addNoteToolbarItem }
+    }
+    
+    private func notesList(notes: [Note]) -> some View {
+        ForEach(notes) { note in
+            NoteCellView(note: note)
+                .swipeActions(edge: .trailing) {
+                    deleteSwipeAction(note: note)
+                }
+                .swipeActions(edge: .leading) {
+                    pinSwipeAction(note: note)
+                }
+                .contextMenu {
+                    NavigationLink(destination: Text("foo")) {
+                        Label("Edit", systemImage: "pencil")
+                    }
+                    deleteMenuItem(note: note)
+                }
+        }
+        .onDelete { delete(at: $0) }
+    }
+    
+    private var pinnedNotes: [Note] {
+        notes.filter { $0.isPinned }
+    }
+    
+    private var unpinnedNotes: [Note] {
+        notes.filter { !$0.isPinned }
     }
     
     private func delete(note: Note) {
@@ -64,6 +93,20 @@ struct NotesView: View {
             Image(systemName: "trash.fill")
         }
         .tint(.red)
+    }
+    
+    private func pinSwipeAction(note: Note) -> some View {
+        Button {
+            note.isPinned.toggle()
+            dataController.save()
+        } label: {
+            if note.isPinned {
+                Image(systemName: "pin.slash.fill")
+            } else {
+                Image(systemName: "pin.fill")
+            }
+        }
+        .tint(.yellow)
     }
     
     private func deleteMenuItem(note: Note) -> some View {

@@ -14,6 +14,7 @@ extension Note {
         content: String,
         date: Date = Date(),
         id: UUID = UUID(),
+        isPinned: Bool = false,
         isInTrash: Bool = false,
         folder: Folder? = nil,
         context: NSManagedObjectContext
@@ -23,8 +24,9 @@ extension Note {
         self.dateCreated = date
         self.dateUpdated = date
         self.id = id
-        self.folder = folder
+        self.isPinned = isPinned
         self.isInTrash = isInTrash
+        self.folder = folder
     }
     
     var safeContent: String {

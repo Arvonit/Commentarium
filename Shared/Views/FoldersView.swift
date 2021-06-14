@@ -14,7 +14,7 @@ struct FoldersView: View {
     @State private var showAddSheet = false
     @State private var showEditSheet = false
     @State private var showDeleteAlert = false
-    @StateObject private var selectedFolder: Folder? = nil
+    @State private var selectedFolder: Folder? = nil
     
     init() {
         self._folders = FetchRequest<Folder>(sortDescriptors: [.init(\.name)], animation: .default)
