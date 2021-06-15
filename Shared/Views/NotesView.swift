@@ -10,6 +10,10 @@ import SwiftUI
 struct NotesView: View {
     @EnvironmentObject private var dataController: DataController
     @FetchRequest private var notes: FetchedResults<Note>
+    @State private var selectedNotes = Set<Note>()
+    @State private var sortOrder = 0
+    @State private var showMoveNoteSheet = false
+    @State private var editMode = EditMode.inactive
     private let folder: Folder?
     private let navigationTitle: String
 
@@ -32,7 +36,7 @@ struct NotesView: View {
     }
 
     var body: some View {
-        List {
+        List(selection: $selectedNotes) {
             if pinnedNotes.count > 0 && unpinnedNotes.count > 0 {
                 Section("Pinned") {
                     notesList(notes: pinnedNotes)
@@ -51,14 +55,25 @@ struct NotesView: View {
         }
         .navigationTitle(navigationTitle)
         .listStyle(.sidebar)
-        .toolbar { addNoteToolbarItem }
+        .environment(\.editMode, $editMode)
+        .toolbar {
+            editToolbarItem
+            sortToolbarItem
+            addNoteToolbarItem
+        }
+        .sheet(isPresented: $showMoveNoteSheet) {
+            MoveNoteView()
+        }
     }
     
     private func notesList(notes: [Note]) -> some View {
         ForEach(notes) { note in
             NoteCellView(note: note)
-                .swipeActions(edge: .trailing) {
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     deleteSwipeAction(note: note)
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                    changeFolderSwipeAction(note: note)
                 }
                 .swipeActions(edge: .leading) {
                     pinSwipeAction(note: note)
@@ -70,7 +85,7 @@ struct NotesView: View {
                     deleteMenuItem(note: note)
                 }
         }
-        .onDelete { delete(at: $0) }
+        .onDelete(perform: delete)
     }
     
     private var pinnedNotes: [Note] {
@@ -93,6 +108,15 @@ struct NotesView: View {
             Image(systemName: "trash.fill")
         }
         .tint(.red)
+    }
+    
+    private func changeFolderSwipeAction(note: Note) -> some View {
+        Button {
+            showMoveNoteSheet.toggle()
+        } label: {
+            Image(systemName: "folder.fill")
+        }
+        .tint(.blue)
     }
     
     private func pinSwipeAction(note: Note) -> some View {
@@ -124,8 +148,73 @@ struct NotesView: View {
         dataController.save()
     }
 
+    private var editToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button {
+                withAnimation {
+                    if editMode == .inactive {
+                        editMode = .active
+                    } else {
+                        editMode = .inactive
+                    }
+                }
+            } label: {
+                if editMode == .inactive {
+                    Text("Edit")
+                } else {
+                    Text("Done")
+                }
+            }
+        }
+    }
+    
+    private var sortToolbarItem: some ToolbarContent {
+        ToolbarItemGroup(placement: .bottomBar) {
+            if editMode == .inactive {
+                Menu {
+                    Picker("Sort Order", selection: $sortOrder) {
+                        Button("Date Updated") {
+                            
+                        }.tag(0)
+                        Button("Date Created") {
+                            
+                        }.tag(1)
+                    }
+                } label: {
+                    Label("Sort Order", systemImage: "arrow.up.arrow.down")
+                }
+                .onChange(of: sortOrder) { newValue in
+                    if newValue == 0 {
+                        notes.sortDescriptors = [
+                            SortDescriptor<Note>(\.dateUpdated, order: .reverse)
+                        ]
+                    } else {
+                        notes.sortDescriptors = [
+                            SortDescriptor<Note>(\.dateCreated, order: .reverse)
+                        ]
+                    }
+                }
+            } else {
+                // This doesn't work — selectedNotes is always empty...
+                Button {
+                    for note in selectedNotes {
+                        note.isInTrash = true
+                    }
+                    dataController.save()
+                    withAnimation {
+                        editMode = .inactive
+                    }
+                } label: {
+                    Label("Delete Selected", systemImage: "trash")
+                }
+            }
+            
+            Spacer()
+        }
+    }
+    
     private var addNoteToolbarItem: some ToolbarContent {
-        ToolbarItemGroup(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .bottomBar) {
             NavigationLink(destination: NoteEditorView(folder: folder)) {
                 Button {
 

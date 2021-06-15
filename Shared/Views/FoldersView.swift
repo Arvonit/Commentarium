@@ -17,7 +17,10 @@ struct FoldersView: View {
     @State private var selectedFolder: Folder? = nil
     
     init() {
-        self._folders = FetchRequest<Folder>(sortDescriptors: [.init(\.name)], animation: .default)
+        self._folders = FetchRequest<Folder>(
+            sortDescriptors: [SortDescriptor<Folder>(\.name)],
+            animation: .default
+        )
     }
     
     var body: some View {
@@ -49,6 +52,7 @@ struct FoldersView: View {
         .navigationTitle("Commentarium")
         .listStyle(.sidebar)
         .toolbar {
+            editToolbarItem
             deleteAllNotesToolbarItem
             addFolderToolbarItem
         }
@@ -96,18 +100,25 @@ struct FoldersView: View {
         }
     }
     
+    private var editToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            EditButton()
+        }
+    }
+    
     private var deleteAllNotesToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .bottomBar) {
+        ToolbarItemGroup(placement: .bottomBar) {
             Button(role: .destructive) {
                 showDeleteAlert.toggle()
             } label: {
                 Label("Delete All Notes", systemImage: "trash")
             }
+            Spacer()
         }
     }
     
     private var addFolderToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .bottomBar) {
             Button {
                 showAddSheet.toggle()
             } label: {

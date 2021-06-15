@@ -26,6 +26,8 @@
 		A45CEFAB2671458100CFC1AD /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CEFA92671458100CFC1AD /* NoteEditorView.swift */; };
 		A45CEFB0267146A000CFC1AD /* DeletedNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CEFAF267146A000CFC1AD /* DeletedNotesView.swift */; };
 		A45CEFB1267146A000CFC1AD /* DeletedNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CEFAF267146A000CFC1AD /* DeletedNotesView.swift */; };
+		A49F5ABF2679402D003293A7 /* MoveNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F5ABE2679402D003293A7 /* MoveNoteView.swift */; };
+		A49F5AC02679402D003293A7 /* MoveNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F5ABE2679402D003293A7 /* MoveNoteView.swift */; };
 		A4CAD4CA266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4CAD4C8266FFFB80039E817 /* Commentarium.xcdatamodeld */; };
 		A4CAD4CB266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4CAD4C8266FFFB80039E817 /* Commentarium.xcdatamodeld */; };
 		A4D3E74C266EBBA100BB24D7 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3E74B266EBBA100BB24D7 /* Tests_iOS.swift */; };
@@ -70,6 +72,7 @@
 		A458982D26702F840096A558 /* NSManagedObjectContext+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Helpers.swift"; sourceTree = "<group>"; };
 		A45CEFA92671458100CFC1AD /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 		A45CEFAF267146A000CFC1AD /* DeletedNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedNotesView.swift; sourceTree = "<group>"; };
+		A49F5ABE2679402D003293A7 /* MoveNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveNoteView.swift; sourceTree = "<group>"; };
 		A4CAD4C9266FFFB80039E817 /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
 		A4D3E735266EBB9E00BB24D7 /* CommentariumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentariumApp.swift; sourceTree = "<group>"; };
 		A4D3E736266EBB9E00BB24D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 				A41C653A2670105C00E81817 /* FoldersView.swift */,
 				A458982626702C0F0096A558 /* AddEditFolderView.swift */,
 				A4EA5657267666A200287533 /* EditFolderView.swift */,
+				A49F5ABE2679402D003293A7 /* MoveNoteView.swift */,
 				A41C653726700FF700E81817 /* NotesView.swift */,
 				A41C653426700FCC00E81817 /* NoteCellView.swift */,
 				A45CEFA92671458100CFC1AD /* NoteEditorView.swift */,
@@ -372,6 +376,7 @@
 				A458982726702C0F0096A558 /* AddEditFolderView.swift in Sources */,
 				A4CAD4CA266FFFB80039E817 /* Commentarium.xcdatamodeld in Sources */,
 				A446A7BE266EC97A003C75C8 /* Note.swift in Sources */,
+				A49F5ABF2679402D003293A7 /* MoveNoteView.swift in Sources */,
 				A45CEFAA2671458100CFC1AD /* NoteEditorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +396,7 @@
 				A45CEFB1267146A000CFC1AD /* DeletedNotesView.swift in Sources */,
 				A41C653C2670105C00E81817 /* FoldersView.swift in Sources */,
 				A4EA5659267666A200287533 /* EditFolderView.swift in Sources */,
+				A49F5AC02679402D003293A7 /* MoveNoteView.swift in Sources */,
 				A41C653326700D6D00E81817 /* Folder.swift in Sources */,
 				A41C653926700FF700E81817 /* NotesView.swift in Sources */,
 				A4EB97942672F8BB00F9E1CB /* NoteDetailView.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// TODO: Refactor
+// TODO: Fix
 struct AddEditFolderView: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode

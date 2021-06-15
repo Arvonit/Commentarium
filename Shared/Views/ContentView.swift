@@ -9,12 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var dataController = DataController()
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
         NavigationView {
-            FoldersView()
-//            Text("Select a folder...")
-//            Text("Select a note...")
+            // When in landscape mode, use a triple column split view, otherwise use a stack view
+            if horizontalSizeClass == .regular {
+                FoldersView()
+                Text("Select a folder...")
+                Text("Select a note...")
+            } else {
+                FoldersView()
+            }
         }
         .environment(\.managedObjectContext, dataController.context)
         .environmentObject(dataController)
